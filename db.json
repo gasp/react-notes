@@ -1,0 +1,16 @@
+{
+  "todo": [
+    {
+      "id": 0,
+      "name": "learn redux",
+      "description": "ez",
+      "isDone": false
+    },
+    {
+      "id": 1,
+      "name": "learn reactive programming",
+      "description": "ez ez",
+      "isDone": false
+    }
+  ]
+}
