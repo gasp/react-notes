@@ -10,6 +10,7 @@ import configureStore from './app/store'
 import getRoutes from './app/scenes/routes'
 import App from './app/App'
 
+// for material-ui
 injectTapEventPlugin()
 
 const browserHistory = useRouterHistory(createHistory)({
@@ -47,6 +48,7 @@ if (module.hot) {
     mountApp()
   })
 
+  // fix hot module reload issue with react router
   module.hot.accept('./app/scenes/routes', () =>
     setImmediate(() => {
       unmountComponentAtNode(rootEl)

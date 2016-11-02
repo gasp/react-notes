@@ -11,9 +11,12 @@ export default class App extends Component {
   }
   render() {
     const { children, muiTheme } = this.props
+    /* the {children} node is the router
+       not included here because we want
+       the app part to be izomorphic */
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <StyleRoot>
+        <StyleRoot> {/* for radium */}
           <Style rules={reset} />
           {children}
         </StyleRoot>
