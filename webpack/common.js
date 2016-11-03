@@ -29,7 +29,7 @@ module.exports = {
           // stage-0 required for redux-saga
           // stage-1 safe zone, reliable chance that stuffs be
           // stage-2 only standardized features
-          plugins: ['transform-decorators-legacy', 'react-hot-loader/babel'],
+          plugins: ['transform-decorators-legacy', 'react-hot-loader/babel', 'transform-runtime'],
         },
       },
       {
@@ -75,6 +75,6 @@ module.exports = {
       'process.env': {
         NODE_ENV: `"${ENV}"`,
       },
-    })
+    }),
   ],
 }
