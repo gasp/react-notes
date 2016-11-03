@@ -12,6 +12,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   fetchNote: actions.fetchNote,
+  updateNote: actions.updateNote,
 }, dispatch)
 
 @connect(
@@ -23,10 +24,16 @@ export default class NoteList extends Component { //eslint-disable-line
     const { fetchNote } = this.props
     fetchNote()
   }
+  handleToggle = (note) => {
+    console.log(note)
+    this.props.updateNote(note)
+  }
+
   render() {
     // const { data, count, isLoading } = this.props
     const isLoading = this.props.isLoading
-    return isLoading ? <MDSpinner /> : <MyList data={this.props.data} />
+    if (isLoading) return <MDSpinner />
+    return <MyList data={this.props.data} handleToggle={this.handleToggle} />
   }
 }
 
@@ -34,4 +41,5 @@ NoteList.propTypes = {
   isLoading: PropTypes.bool,
   data: PropTypes.arrayOf(PropTypes.shape()),
   fetchNote: PropTypes.func,
+  updateNote: PropTypes.func,
 }

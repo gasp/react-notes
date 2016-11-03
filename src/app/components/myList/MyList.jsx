@@ -6,13 +6,13 @@ import IconButton from 'material-ui/IconButton'
 import ModeEdit from 'material-ui/svg-icons/editor/mode-edit'
 import Delete from 'material-ui/svg-icons/action/delete'
 
-export const MyList = ({ data }) => (
+export const MyList = ({ data, handleToggle }) => (
   <List>
     {data.map((note, index) => (
       <div key={index}>
         <ListItem
           primaryText={note.name}
-          rightToggle={<Toggle onToggle={() => console.log('toggled')} toggled={note.isDone} />}
+          rightToggle={<Toggle onToggle={() => handleToggle(note)} toggled={note.isDone} />}
         />
         <Link to={`/note/edit/${note.id}`}>
           <IconButton>
@@ -29,4 +29,5 @@ export const MyList = ({ data }) => (
 
 MyList.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape()),
+  handleToggle: PropTypes.func,
 }
