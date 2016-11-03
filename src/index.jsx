@@ -10,6 +10,7 @@ import { AppContainer } from 'react-hot-loader'
 import configureStore from './app/store'
 import getRoutes from './app/scenes/routes'
 import App from './app/App'
+import noteSaga from './app/store/sagas/noteSaga'
 
 // for material-ui
 injectTapEventPlugin()
@@ -19,6 +20,7 @@ const browserHistory = useRouterHistory(createHistory)({
 })
 
 const store = configureStore()
+store.runSaga(noteSaga)
 
 const routes = getRoutes({ store })
 const rootEl = document.getElementById('app-container')

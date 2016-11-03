@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
+import createSagaMiddleware, { END } from 'redux-saga'
 import logger from './middleware/logger'
 
 import rootReducer from './reducer'
@@ -7,6 +7,7 @@ import rootReducer from './reducer'
 
 export default function configureStore(initialState = {}) {
   const hasDevTools = typeof window === 'object' && typeof window.devToolsExtension !== 'undefined'
+  const saga = createSagaMiddleware()
 
   const enhancers = [
     hasDevTools ? window.devToolsExtension() : null,
@@ -14,13 +15,15 @@ export default function configureStore(initialState = {}) {
 
   const storeFactory = compose(
     applyMiddleware(
-      thunk,
+      saga,
       logger
     ),
     ...enhancers
   )(createStore)
 
   const store = storeFactory(rootReducer, initialState)
+  store.runSaga = saga.run
+  store.close = () => store.dispatch(END)
 
   if (module.hot) {
     module.hot.accept('./reducer', () => {
