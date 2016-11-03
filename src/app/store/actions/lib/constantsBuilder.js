@@ -6,7 +6,7 @@ export default (entity, actions = []) => {
       [`${CONSTANT}_START`]: `${CONSTANT}_START`,
       [`${CONSTANT}_SUCCESS`]: `${CONSTANT}_SUCCESS`,
       [`${CONSTANT}_ERROR`]: `${CONSTANT}_ERROR`,
-      [`${CONSTANT}_RETRY`]: `${CONSTANT}_ERROR`,
+      [`${CONSTANT}_RETRY`]: `${CONSTANT}_RETRY`,
     }
   }, { })
 }

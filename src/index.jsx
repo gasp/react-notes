@@ -1,4 +1,5 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 import { render, unmountComponentAtNode } from 'react-dom'
 import { createHistory } from 'history'
 import { Router, useRouterHistory } from 'react-router'
@@ -25,17 +26,19 @@ const rootEl = document.getElementById('app-container')
 const mountApp = () => {
   render(
     <AppContainer>
-      <App
-        radiumConfig={{ userAgent: 'all' }}
-        muiTheme={getMuiTheme(lightBaseTheme)}
-      >
-        <Router
-          history={browserHistory}
-          // routes={routes}
+      <Provider store={store}>
+        <App
+          radiumConfig={{ userAgent: 'all' }}
+          muiTheme={getMuiTheme(lightBaseTheme)}
         >
-          {routes}
-        </Router>
-      </App>
+          <Router
+            history={browserHistory}
+            // routes={routes}
+          >
+            {routes}
+          </Router>
+        </App>
+      </Provider>
     </AppContainer>,
     rootEl
   )
